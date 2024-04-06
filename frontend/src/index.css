@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(/bgimg.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(/xmas.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -25,4 +25,92 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #242424;
+}
+
+/* for chat bubble shake animation */
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-5px);
+    }
+
+    40% {
+        transform: translateX(5px);
+    }
+
+    60% {
+        transform: translateX(-5px);
+    }
+
+    80% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* responsiveness */
+.adjust-dimensions {
+    @media (max-width: 510px) {
+        height: 100%;
+        width: 100%;
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+    }
+
+    @media (max-width: 640px) {
+        height: 100%;
+        width: 100%;
+    }
+
+    @media (min-width: 640px) {
+        height: 450px;
+        width: 90%;
+    }
+
+    @media (min-width: 768px) {
+        height: 550px;
+        width: 90%;
+    }
+
+    @media (min-width: 968px) {
+        height: 550px;
+        width: 70%;
+    }
+
+    @media (min-width: 1200px) {
+        height: 550px;
+        width: 60%;
+    }
+}
+
+/* to disable textarea resize */
+textarea {
+    resize: none;
+}
+
+/* to disable textarea scrollbar */
+textarea::-webkit-scrollbar {
+    width: 0;
+}
+
+/* responsiveness for login page */
+.adjust-login-and-signup-size {
+    @media (max-width: 500px) {
+        width: 80%;
+    }
+
+    @media (max-width: 400px) {
+        width: 70%;
+    }
 }
