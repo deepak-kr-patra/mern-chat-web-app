@@ -15,6 +15,7 @@ function App() {
   const { authUser } = useAuthContext();
 
   return (
+    // classes are modified
     <div className='p-4 h-screen flex items-center justify-center'>
       <Routes>
         <Route path="/" element={authUser ? <Home /> : <Navigate to={"/login"} />} />
