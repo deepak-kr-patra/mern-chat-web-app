@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 const useScreenWidth = create((set) => ({
-    screenWidth: screen.width,
+    screenWidth: window.innerWidth,
     setScreenWidth: (screenWidth) => set({ screenWidth })
 }))
 

@@ -12,7 +12,7 @@ const Home = () => {
   const [_, forceUpdate] = useReducer(x => x + 1, 0);
 
   window.onresize = function () {
-    setScreenWidth(screen.width);
+    setScreenWidth(window.innerWidth);
     forceUpdate();
   };
 
