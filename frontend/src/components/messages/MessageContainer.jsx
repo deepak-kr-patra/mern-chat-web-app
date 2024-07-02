@@ -8,18 +8,12 @@ import useScreenWidth from '../../zustand/useScreenWidth';
 
 const MessageContainer = () => {
 
-  const { screenWidth } = useScreenWidth();
   const { selectedConversation, setSelectedConversation } = useConversation();
 
   useEffect(() => {
     // will run during unmounting
     return () => setSelectedConversation(null);
   }, [setSelectedConversation]);
-
-  // let setWidth = "";
-  // if (screenWidth < 640) {
-  //   setWidth = "w-2/3"
-  // }
 
   return (
     <div className={`flex flex-col w-[55%]`}>
