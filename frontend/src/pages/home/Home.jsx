@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React from 'react'
 import Sidebar from '../../components/sidebar/Sidebar'
 import MessageContainer from '../../components/messages/MessageContainer'
 import SingleContainer from '../../components/SingleContainer';
@@ -9,11 +9,8 @@ const Home = () => {
 
   const { screenWidth, setScreenWidth } = useScreenWidth();
 
-  const [_, forceUpdate] = useReducer(x => x + 1, 0);
-
   window.onresize = function () {
     setScreenWidth(window.innerWidth);
-    forceUpdate();
   };
 
   return (
@@ -32,15 +29,3 @@ const Home = () => {
 }
 
 export default Home
-
-// screenWidth < 640 ? (
-//   <div className='flex h-full w-full rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
-//     <Sidebar />
-//     {/* <MessageContainer /> */}
-//   </div>
-// ) : (
-//   <div className='flex sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
-//     <Sidebar />
-//     <MessageContainer />
-//   </div>
-// )

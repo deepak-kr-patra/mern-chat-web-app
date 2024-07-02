@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect } from 'react'
 import useConversation from '../zustand/useConversation'
 import Sidebar from './sidebar/Sidebar';
 import InnerMessageContainer from './messages/InnerMessageContainer';

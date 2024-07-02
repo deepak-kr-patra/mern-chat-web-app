@@ -9,8 +9,6 @@ const MessageInput = () => {
     const [message, setMessage] = useState("");
     const { loading, sendMessage } = useSendMessage();
     const { screenWidth } = useScreenWidth();
-    
-    // const [rows, setRows] = useState(1);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,19 +17,11 @@ const MessageInput = () => {
         }
         await sendMessage(message);
         setMessage("");
-        // setRows(1);
         textArea.style.height = "40px";
     };
 
     const adjustTextArea = () => {
         let textArea = document.getElementById('textArea');
-        // let textAreaHeight = textArea.clientHeight;
-        // let scrollHeight = textArea.scrollHeight;
-
-        // // console.log(scrollHeight + " - " + textAreaHeight);
-        // if (scrollHeight > textAreaHeight && rows < 5) {
-        //     setRows(rows + 1);
-        // }
 
         textArea.style.height = "40px";
         textArea.style.maxHeight = "120px"
@@ -58,7 +48,6 @@ const MessageInput = () => {
                     placeholder='Send a message'
                     value={message}
                     onChange={(e) => { setTextAreaInput(e.target.value) }}
-                    // rows={rows}
                 />
                 <button type='submit' className='absolute inset-y-0 end-0 flex items-center pe-3 text-white'>
                     {loading ? <span className='loading loading-spinner'></span> : <BsSend />}
