@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import GenderCheckbox from './GenderCheckbox'
 import { Link } from 'react-router-dom'
 import useSignup from '../../hooks/useSignup'
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const SignUp = () => {
@@ -15,6 +16,17 @@ const SignUp = () => {
   })
 
   const { loading, signup } = useSignup();
+
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisibility(passwordVisibility === false ? true : false);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmPasswordVisibility(confirmPasswordVisibility === false ? true : false);
+  };
 
   const handleCheckboxChange = (gender) => {
     setInputs({ ...inputs, gender })
@@ -33,32 +45,38 @@ const SignUp = () => {
         </h1>
 
         <form onSubmit={handleSubmit}>
+          <label htmlFor='fullname-input' className='label p-2 pb-1 cursor-pointer'>
+            <span className='text-base label-text text-white'>Full Name</span>
+          </label>
           <div>
-            <label className='label p-2'>
-              <span className='text-base label-text text-white'>Full Name</span>
-            </label>
-            <input type="text" placeholder="Enter full name" className="input input-bordered w-full h-10" value={inputs.fullName} onChange={(e) => setInputs({ ...inputs, fullName: e.target.value })} />
+            <input type="text" id='fullname-input' placeholder="Enter full name" className="input input-bordered w-full h-10" value={inputs.fullName} onChange={(e) => setInputs({ ...inputs, fullName: e.target.value })} />
           </div>
 
+          <label htmlFor='username-input' className='label p-2 pb-1 cursor-pointer'>
+            <span className='text-base label-text text-white'>Username</span>
+          </label>
           <div>
-            <label className='label p-2'>
-              <span className='text-base label-text text-white'>Username</span>
-            </label>
-            <input type="text" placeholder="Enter username" className="input input-bordered w-full h-10" value={inputs.username} onChange={(e) => setInputs({ ...inputs, username: e.target.value })} />
+            <input type="text" id='username-input' placeholder="Enter username" className="input input-bordered w-full h-10" value={inputs.username} onChange={(e) => setInputs({ ...inputs, username: e.target.value })} />
           </div>
 
-          <div>
-            <label className='label p-2'>
-              <span className='text-base label-text text-white'>Password</span>
-            </label>
-            <input type="password" placeholder="Enter password" className="input input-bordered w-full h-10" value={inputs.password} onChange={(e) => setInputs({ ...inputs, password: e.target.value })} />
+          <label htmlFor='password-input' className='label p-2 pb-1 cursor-pointer'>
+            <span className='text-base label-text text-white'>Password</span>
+          </label>
+          <div className='relative'>
+            <input type={!passwordVisibility ? "password" : "text"} id='password-input' placeholder="Enter password" className="input input-bordered w-full h-10" value={inputs.password} onChange={(e) => setInputs({ ...inputs, password: e.target.value })} />
+            <div className='eye-icon' onClick={() => togglePasswordVisibility()}>
+              {!passwordVisibility ? <FaEyeSlash /> : <FaEye />}
+            </div>
           </div>
 
-          <div>
-            <label className='label p-2'>
-              <span className='text-base label-text text-white'>Confirm Password</span>
-            </label>
-            <input type="password" placeholder="Confirm password" className="input input-bordered w-full h-10" value={inputs.confirmedPassword} onChange={(e) => setInputs({ ...inputs, confirmedPassword: e.target.value })} />
+          <label htmlFor='confirm-password-input' className='label p-2 pb-1 cursor-pointer'>
+            <span className='text-base label-text text-white'>Confirm Password</span>
+          </label>
+          <div className='relative'>
+            <input type={!confirmPasswordVisibility ? "password" : "text"} id='confirm-password-input' placeholder="Confirm password" className="input input-bordered w-full h-10" value={inputs.confirmedPassword} onChange={(e) => setInputs({ ...inputs, confirmedPassword: e.target.value })} />
+            <div className='eye-icon' onClick={() => toggleConfirmPasswordVisibility()}>
+              {!confirmPasswordVisibility ? <FaEyeSlash /> : <FaEye />}
+            </div>
           </div>
 
           <GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={inputs.gender} />

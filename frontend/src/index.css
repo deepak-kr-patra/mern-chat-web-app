@@ -22,6 +22,14 @@ body {
     bottom: 0;
 }
 
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 4%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
 /* styling scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
