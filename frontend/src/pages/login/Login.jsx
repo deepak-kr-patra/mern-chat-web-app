@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useLogin from '../../hooks/useLogin';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const Login = () => {
@@ -9,6 +10,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const { loading, login } = useLogin();
+
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisibility(passwordVisibility === false ? true : false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,18 +31,21 @@ const Login = () => {
         </h1>
 
         <form onSubmit={handleSubmit}>
+          <label htmlFor='username-input' className='label p-2 pb-1 cursor-pointer'>
+            <span className='text-base label-text text-white'>Username</span>
+          </label>
           <div>
-            <label className='label p-2'>
-              <span className='text-base label-text text-white'>Username</span>
-            </label>
-            <input type="text" placeholder="Enter username" className="input input-bordered w-full h-10" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input type="text" id='username-input' placeholder="Enter username" className="input input-bordered w-full h-10" value={username} onChange={(e) => setUsername(e.target.value)} />
           </div>
 
-          <div>
-            <label className='label p-2'>
-              <span className='text-base label-text text-white'>Password</span>
-            </label>
-            <input type="password" placeholder="Enter password" className="input input-bordered w-full h-10" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <label htmlFor='password-input' className='label p-2 pb-1 cursor-pointer'>
+            <span className='text-base label-text text-white'>Password</span>
+          </label>
+          <div className='relative'>
+            <input type={!passwordVisibility ? "password" : "text"} id='password-input' placeholder="Enter password" className="input input-bordered w-full h-10" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <div className='eye-icon' onClick={() => togglePasswordVisibility()}>
+              {!passwordVisibility ? <FaEyeSlash /> : <FaEye />}
+            </div>
           </div>
 
           <span className='text-sm label-text text-white'>
